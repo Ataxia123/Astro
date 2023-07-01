@@ -3,6 +3,46 @@ return {
   { "goolord/alpha-nvim",           enabled = false },
   { "max397574/better-escape.nvim", enabled = false },
   -- You can also add new plugins here as well:
+      {
+    "zbirenbaum/copilot.lua",
+    -- Lazy load when event occurs. Events are triggered
+    -- as mentioned in:
+    -- https://vi.stackexchange.com/a/4495/20389
+    event = "InsertEnter",
+    -- You can also have it load at immediately at
+    -- startup by commenting above and uncommenting below:
+    lazy = false,
+         config = function()
+       require("copilot").setup({})
+     end,
+  },
+
+  {'ThePrimeagen/harpoon',
+        keys = {
+            { '<leader>ha', '<cmd>lua require("harpoon.ui").toggle_quick_menu()<cr>', desc = "Toggle harpoon menu" },
+            { '<leader>hf', '<cmd>lua require("harpoon.mark").toggle_file() <cr>',    desc = "Add file to harpoon list" },
+            { '<leader>hh', '<cmd>lua require("harpoon.ui").nav_next() <cr>',    desc = "Nav Next" },
+            { '<leader>hg', '<cmd>lua require("harpoon.ui").nav_prev() <cr>',    desc = "Nav Prev" },
+        },
+
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+            }
+    },
+
+  { "anuvyklack/windows.nvim",
+   requires = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim"
+   },
+   config = function()
+      vim.o.winwidth = 10
+      vim.o.winminwidth = 10
+      vim.o.equalalways = false
+      require('windows').setup()
+   end
+},
+
   { "lvimuser/lsp-inlayhints.nvim", config = true },
   {
     "karb94/neoscroll.nvim",
